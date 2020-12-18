@@ -1,2 +1,11 @@
-#TODO
+#TODO #DONEX2
+
+ifconfig eth0 172.16.0.1/14
 ifconfig eth1 85.1.1.254/24
+route add default gw 85.1.1.0
+
+iptable -F
+iptable -t nat -F
+iptables -t nat -A POSTROUTTING -s 85.1.1.0 SNAT --to-source 172.16.0.1
+
+//ip nat outside source static network 172.16.0.0/14 85.1.1.0/24
