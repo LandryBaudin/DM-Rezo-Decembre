@@ -1,4 +1,5 @@
 ifconfig eth0 172.16.0.1/14
-/etc/dhcp3-server start
+
+/etc/init.d/dhcp3-server start
 
 #TODO #DONE3
