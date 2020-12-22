@@ -8,5 +8,5 @@ $TTL	60000
 			)
 @		IN	NS	dnsrr.rr.com.
 dnsrr		IN	A	22.9.17.92
-www		IN	A	172.16.0.1
+www		IN	A	192.168.0.10
 
