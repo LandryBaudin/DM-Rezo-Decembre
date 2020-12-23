@@ -1,14 +1,13 @@
 ifconfig eth0 172.16.1.0/14
 ifconfig eth1 85.1.1.254/24
+route add default gw 85.1.1.1 eth1
 
-route add default gw 85.1.1.1
+
 
 iptables -F
-
 iptables -t nat -F
 
 iptables -t nat -A POSTROUTING -s 172.16.0.0/14 -j SNAT --to-source 85.1.1.254
-
 iptables -t nat PREROUTING -i eth1 -p tcp --dport 22 -j DNAT --to-dest 172.16.1.0
 
 #TODO #DONEX1 #DONE2
