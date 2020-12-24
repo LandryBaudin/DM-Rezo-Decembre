@@ -8,4 +8,7 @@ iptables -F
 iptables -t nat -F
 
 iptables -t nat -A POSTROUTING -s 172.16.0.0/14 -j SNAT --to-source 85.2.2.254
-iptables -t nat PREROUTING -i eth1 -p tcp --dport 22 -j DNAT --to-dest 172.19.255.254
+iptables -t nat PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to-dest 172.19.255.254
+
+iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 192.168.0.10:80
+iptables -A FORWARD -i eth1 -p tcp --dport 80 -d 192.168.0.10 -j ACCEPT
