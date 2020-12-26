@@ -17,5 +17,6 @@ iptables -A FORWARD -i eth0 eth1 -o  -p tcp --syn -dport 80 -m conntrack --ctsta
 iptables -A FORWARD -i eth0 -o eth1 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 iptables -A FORWARD -i eth1 -o eth0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
-sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j DNAT --to-dest 172.16.1.1
-sudo iptables -t nat -A POSTROUTING -o eth1 -p tcp --dport 80 -d  -j SNAT --to-source 85.2.2.254
+
+iptables -t nat -A POSTROUTING -o eth1 -p tcp --dport 80 -d  -j SNAT --to-source 85.2.2.254
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 172.16.1.1
